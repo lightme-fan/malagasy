@@ -5,12 +5,10 @@
 
 function loadStories() {
   require('../src/components/PhraseTextarea/PhraseTextarea.stories');
-  require('../src/components/SectionHeading/Heading.stories');
 }
 
 const stories = [
   '../src/components/PhraseTextarea/PhraseTextarea.stories',
-  '../src/components/SectionHeading/Heading.stories',
 
 ];
 

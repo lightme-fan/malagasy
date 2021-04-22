@@ -9,7 +9,6 @@ import useValidateInput from '../../../util/useHandleInput'
 
 function TextareaWrapper() {
   const { inputValue, handleInputValue } = useValidateInput()
-  alert(inputValue)
   return (
     <View>
       <PhraseTextarea 
@@ -19,7 +18,7 @@ function TextareaWrapper() {
       /> 
       <PhraseTextarea 
         placeholder="Enter here" 
-        value={inputValue}
+        value="Roa ambin'ny folo"
       />
     </View>
   )
