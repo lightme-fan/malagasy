@@ -3,26 +3,37 @@ import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
 
 // Stylesheet
 const styles = StyleSheet.create({
-  input: {
-    borderRadius: 3,
+  container: {
+    height: 100,
+    marginVertical: 0,
+    marginHorizontal: 'auto',
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderStyle: 'solid',
+    borderColor: '#E5E5E5',
     borderWidth: 1,
-    backgroundColor: 'rgba(255, 255, 255, 1)',
-    color: 'rgba(17, 24, 39, 1)',
-    margin: 23,
-    padding: 10,
-    textAlign: 'center',
-    fontSize: 20
-  }
+  },
+  input: {
+    color: '#111827',
+  },
+  textarea: {
+    color: '#111827',
+    maxWidth: 360,
+    marginHorizontal: 'auto',
+    fontSize: 20,
+    lineHeight: 24.3,
+  },
 })
 
 // PhraseTextarea component
-export default function PhraseTextarea({ value, onChange, editable }) {
+export default function PhraseTextarea({ value,   onChange = () => null, editable }) {
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <TextInput 
         placeholder="Enter here"
-        style={styles.input}
+        style={editable ? styles.input : styles.textarea}
         value={value}
         onChangeText={onChange}
         editable={editable}
