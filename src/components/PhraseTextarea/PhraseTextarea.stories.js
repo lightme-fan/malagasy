@@ -5,25 +5,26 @@ import { View } from 'react-native';
 import { storiesOf } from '@storybook/react-native';
 
 import PhraseTextarea from './PhraseTextarea';
-import useValidateInput from '../../../util/useHandleInput'
 
-function TextareaWrapper() {
-  const { inputValue, handleInputValue } = useValidateInput()
+function EditableTextare() {
+  const [ inputValue, setInputValue ] = useState('')
+
   return (
-    <View>
-      <PhraseTextarea 
-        placeholder="Enter here" 
-        value={inputValue} 
-        onChange={(event) => handleInputValue(event)} 
-      /> 
-      <PhraseTextarea 
-        placeholder="Enter here" 
-        value="Roa ambin'ny folo"
-      />
-    </View>
+    <PhraseTextarea 
+      value={inputValue} 
+      editable={true}
+      onChange={(event) => setInputValue(event.value)} 
+    />  
   )
 }
 
 storiesOf('Phrase', module)
 .addDecorator(story => <View>{story()}</View>)
-.add('Textarea', () => <TextareaWrapper />)
+.add('Editable', () => <EditableTextare />)
+.add('Uneditable', () => <PhraseTextarea value={"Roa ambin'ny folo"} editable={false}/>)
+.add('Long phrase', () => 
+  <PhraseTextarea 
+    value={"long long long long long long long long long long long long long long long long long long long long "} 
+    editable={false}
+  />
+)
