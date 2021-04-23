@@ -5,11 +5,14 @@
 
 function loadStories() {
   require('../src/components/PhraseTextarea/PhraseTextarea.stories');
+  require('./stories/Button/Button.stories');
+  require('./stories/Welcome/Welcome.stories');
 }
 
 const stories = [
   '../src/components/PhraseTextarea/PhraseTextarea.stories',
-
+  './stories/Button/Button.stories',
+  './stories/Welcome/Welcome.stories',
 ];
 
 module.exports = {
