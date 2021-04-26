@@ -5,6 +5,7 @@
 
 function loadStories() {
   require('../src/components/ActionButton/ActionButton.stories');
+  require('../src/components/LanguageSwitcher/LanguageSwitcher.stories');
   require('../src/components/NextButton/NextButton.stories');
   require('../src/components/PhraseTextarea/PhraseTextarea.stories');
   require('../src/components/ToolButton/ToolButton.stories');
@@ -14,6 +15,7 @@ function loadStories() {
 
 const stories = [
   '../src/components/ActionButton/ActionButton.stories',
+  '../src/components/LanguageSwitcher/LanguageSwitcher.stories',
   '../src/components/NextButton/NextButton.stories',
   '../src/components/PhraseTextarea/PhraseTextarea.stories',
   '../src/components/ToolButton/ToolButton.stories',
