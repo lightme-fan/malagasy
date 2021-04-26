@@ -1,28 +1,37 @@
-import React from 'react'
-import { StyleSheet, SafeAreaView, TouchableWithoutFeedback, View } from 'react-native'
-import Swicther from '../../Svg/Switcher'
+import React from 'react';
+import {StyleSheet, SafeAreaView, View, Text, Pressable} from 'react-native';
+import Swicther from '../../Svg/Switcher';
 
 const styles = StyleSheet.create({
-    container: {
-        height: 40,
-        width: 90,
-        borderRadius: 30,
-        backgroundColor: '#06B6D4',
-        flexDirection: 'row'
-    },
-    color: {
-        color: '#FFFFFF'
-    }
-})
+  container: {
+    height: 40,
+    width: 90,
+    borderRadius: 30,
+    backgroundColor: '#06B6D4',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  color: {
+    color: '#FFFFFF',
+  },
+});
 
 const LanguageSwitcher = () => {
-    return (
-        <SafeAreaView style={styles.container}>
-            <TouchableWithoutFeedback style={styles.color} onPress={() => alert('Languages is siwtched into English')}>EN</TouchableWithoutFeedback>
-            <View><Swicther /></View>
-            <TouchableWithoutFeedback style={styles.color} onPress={() => alert('Languages is siwtched into English')}>MA</TouchableWithoutFeedback>
-        </SafeAreaView>
-    )
-}
+  return (
+    <SafeAreaView style={styles.container}>
+      <Pressable onPress={() => alert('Languages is siwtched into English')}>
+        <Text style={styles.color}>EN</Text>
+      </Pressable>
+      <View>
+        <Swicther />
+      </View>
+      <Pressable onPress={() => alert('Languages is siwtched into Malagasy')}>
+        <Text style={styles.color}>MA</Text>
+      </Pressable>
+    </SafeAreaView>
+  );
+};
 
-export default LanguageSwitcher
+export default LanguageSwitcher;
