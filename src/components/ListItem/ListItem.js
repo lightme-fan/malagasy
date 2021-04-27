@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, View, Text} from 'react-native';
+import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   item: {
@@ -13,13 +13,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const ListItem = ({
-  category,
-  children,
-}) => {
+const ListItem = ({category, children}) => {
   return (
-    <SafeAreaView
-      style={styels.item}>
+    <SafeAreaView style={styles.item}>
       <Text>{category}</Text>
       <View>{children}</View>
     </SafeAreaView>

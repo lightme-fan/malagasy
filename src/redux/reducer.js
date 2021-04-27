@@ -12,7 +12,6 @@ const initialState = {
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'DISPLAY_CATEGORIES': {
-      console.log(state.loading);
       return state;
     }
     default:
