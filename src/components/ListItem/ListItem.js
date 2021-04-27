@@ -1,18 +1,24 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
+import {SafeAreaView, View, Text} from 'react-native';
 
-const styles = StyleSheet.create({
-  item: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 20,
-  },
-});
-
-const ListItem = ({category, children}) => {
+const ListItem = ({
+  category,
+  children,
+  borderWidth,
+  borderColor,
+  borderBottomWidth,
+}) => {
   return (
-    <SafeAreaView style={styles.item}>
+    <SafeAreaView
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 20,
+        borderWidth: borderWidth,
+        borderColor: borderColor,
+        borderBottomWidth: borderBottomWidth,
+      }}>
       <Text>{category}</Text>
       <View>{children}</View>
     </SafeAreaView>
