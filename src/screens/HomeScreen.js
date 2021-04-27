@@ -53,14 +53,17 @@ function HomeScreen() {
         <View>
           <Section>
             <SectionHeading title={'Select a category:'} />
-            <List
-              data={DATA.categories}
-              actionText={'Learn'}
-              actionStyle={'#06B6D4'}
-              onPressButton={() =>
-                alert('Click to learn all about this category')
-              }
-            />
+            <View>
+              {DATA.categories.map(item => (
+                <List
+                  categoryName={item.name.en}
+                  categoryId={item.id}
+                  actionText={'Learn'}
+                  actionStyle={'#06B6D4'}
+                  onPressButton={() => alert('Clicked button')}
+                />
+              ))}
+            </View>
           </Section>
         </View>
       </ScrollView>
