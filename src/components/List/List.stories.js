@@ -1,7 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
 import {storiesOf} from '@storybook/react-native';
-import {View, StyleSheet} from 'react-native';
 
 import List from './List';
 import DATA from '../../data/categories.json';
