@@ -1,12 +1,20 @@
 import {combineReducers} from 'redux';
+import data from '../data/categories.json';
 
 const initialState = {
-  data: null,
   loading: false,
+  categories: null,
+  phrase: null,
+  seenPhrases: null,
+  learntPhrases: null,
 };
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'DISPLAY_CATEGORIES': {
+      console.log(state.loading);
+      return state;
+    }
     default:
       return state;
   }
