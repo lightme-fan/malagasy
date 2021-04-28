@@ -1,8 +1,8 @@
 import React from 'react';
-import {SafeAreaView, FlatList, StyleSheet} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView} from 'react-native';
 
-import ListItem from '../ListItem/ListItem';
 import ActionButton from '../ActionButton/ActionButton';
+import ListItem from '../ListItem/ListItem';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   listItem: {
     fontSize: 16,
     lineHeight: 19,
+    color: '#111827',
   },
 });
 const List = ({
