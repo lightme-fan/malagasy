@@ -9,33 +9,30 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   listItem: {
-    borderWidth: 1,
-    borderColor: '#E5E5E5',
     fontSize: 16,
     lineHeight: 19,
     color: '#111827',
   },
 });
-
-const List = ({data, actionText, actionStyle, onPressButton}) => {
+const List = ({
+  categoryName,
+  categoryId,
+  actionText,
+  actionStyle,
+  onPressButton,
+}) => {
   return (
     <SafeAreaView style={styles.container}>
-      {data.map((item, index) => (
-        <ListItem
-          category={item.name.en}
-          key={item.id}
-          style={styles.listItem}
-          borderWidth={1}
-          borderBottomWidth={0.4}
-          borderColor={'#E5E5E5'}
-          multiline={true}>
-          <ActionButton
-            text={actionText}
-            textStyle={actionStyle}
-            onPress={onPressButton}
-          />
-        </ListItem>
-      ))}
+      <ListItem
+        category={categoryName}
+        key={categoryId}
+        style={styles.listItem}>
+        <ActionButton
+          text={actionText}
+          textStyle={actionStyle}
+          onPress={onPressButton}
+        />
+      </ListItem>
     </SafeAreaView>
   );
 };
