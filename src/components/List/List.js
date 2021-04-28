@@ -7,12 +7,8 @@ import ActionButton from '../ActionButton/ActionButton';
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
-    paddingLeft: 16,
-    paddingRight: 20,
   },
   listItem: {
-    borderWidth: 1,
-    borderColor: '#E5E5E5',
     fontSize: 16,
     lineHeight: 19,
   },

@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 20,
+    borderWidth: 1,
+    borderBottomWidth: 0.4,
+    borderColor: '#E5E5E5',
   },
 });
 
