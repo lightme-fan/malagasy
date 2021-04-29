@@ -1,5 +1,6 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 
 import LanguageSwitcher from '../components/LanguageSwitcher/LanguageSwitcher';
 import SectionHeading from '../components/SectionHeading/SectionHeading';
@@ -8,7 +9,6 @@ import AddToolButton from '../Svg/AddToolButton';
 import LearntButton from '../Svg/LearntButton';
 import NightModeButton from '../Svg/NightModeButton';
 import SeenButton from '../Svg/SeenButton';
-import DATA from '../data/categories.json';
 import List from '../components/List/List';
 
 const styles = StyleSheet.create({
@@ -23,14 +23,22 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 56,
   },
-  category: {},
+  section: {
+    marginBottom: 15,
+  },
 });
 
+// Section to differenciate the lists such as list categories, learnt phrases
 function Section({children}) {
-  return <View>{children}</View>;
+  return <View style={styles.section}>{children}</View>;
 }
 
 function HomeScreen() {
+  // get state from initialState in reducer
+  const categories = useSelector(state => state.items.categories);
+  const seenPhrases = useSelector(state => state.items.seenPhrases);
+  const learntPhrases = useSelector(state => state.items.learntPhrases);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -51,10 +59,20 @@ function HomeScreen() {
         </View>
 
         <View>
+          {/* Categories */}
           <Section>
             <SectionHeading title={'Select a category:'} />
             <View>
-              {DATA.categories.map(item => (
+              {/* Category All is not in category data, so I display this for that */}
+              <List
+                categoryName={'All'}
+                actionText={'Learn'}
+                actionStyle={'#06B6D4'}
+                onPressButton={() => alert('Clicked button')}
+              />
+
+              {/* Displaying all categories */}
+              {categories.map(item => (
                 <List
                   categoryName={item.name.en}
                   categoryId={item.id}
@@ -64,6 +82,16 @@ function HomeScreen() {
                 />
               ))}
             </View>
+          </Section>
+
+          {/* Seen phrases */}
+          <Section>
+            {!seenPhrases && <SectionHeading title={'Seen phrases:'} />}
+          </Section>
+
+          {/* Learnt phrases */}
+          <Section>
+            {!learntPhrases && <SectionHeading title={'Learnt phrases:'} />}
           </Section>
         </View>
       </ScrollView>
