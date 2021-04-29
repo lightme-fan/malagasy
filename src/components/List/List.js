@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, ScrollView} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, Pressable} from 'react-native';
 
 import ActionButton from '../ActionButton/ActionButton';
 import ListItem from '../ListItem/ListItem';
@@ -22,18 +22,14 @@ const List = ({
   onPressButton,
 }) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <Pressable style={styles.container} onPress={onPressButton}>
       <ListItem
         category={categoryName}
         key={categoryId}
         style={styles.listItem}>
-        <ActionButton
-          text={actionText}
-          textStyle={actionStyle}
-          onPress={onPressButton}
-        />
+        <ActionButton text={actionText} textStyle={actionStyle} />
       </ListItem>
-    </SafeAreaView>
+    </Pressable>
   );
 };
 
