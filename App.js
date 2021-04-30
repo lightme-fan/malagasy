@@ -6,31 +6,29 @@
  * @flow strict-local
  */
 
-import React from 'react';
+// import 'react-native-gesture-handler';
+import * as React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
   Text,
   useColorScheme,
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import HomeScreen from './src/screens/HomeScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import {createStore} from 'redux';
-import {Provider} from 'react-redux';
 import appReducer from './src/redux/reducer';
+import HomeScreen from './src/screens/HomeScreen';
+import LearningScreen from './src/screens/LearningScreen';
 
+// Create store
 const store = createStore(appReducer);
 
 const Section = ({children, title}) => {
@@ -59,6 +57,10 @@ const Section = ({children, title}) => {
   );
 };
 
+// Create stack
+const Stack = createStackNavigator();
+console.log(Stack);
+
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -67,56 +69,28 @@ const App = () => {
   };
 
   return (
-    <Provider store={store}>
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={backgroundStyle}>
-          {/* <Header /> */}
-          <View
-            style={{
-              backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            }}>
-            <HomeScreen />
-            {/* <Section title="Step One">
-              Edit <Text style={styles.highlight}>App.js</Text> to change this
-              screen and then come back to see your edits.
-            </Section>
-            <Section title="See Your Changes">
-              <ReloadInstructions />
-            </Section>
-            <Section title="Debug">
-              <DebugInstructions />
-            </Section>
-            <Section title="Learn More">
-              Read the docs to discover what to do next:
-            </Section> 
-            <LearnMoreLinks /> */}
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </Provider>
+    <NavigationContainer>
+      <Provider store={store}>
+        <SafeAreaView style={backgroundStyle}>
+          <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+          <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            style={backgroundStyle}>
+            {/* <Header /> */}
+            <View
+              style={{
+                backgroundColor: isDarkMode ? Colors.black : Colors.white,
+              }}>
+              {/* <Stack.Navigator initialRouteName="Home">
+                <Stack.Screen name="Home" component={HomeScreen} />
+              </Stack.Navigator> */}
+              <LearningScreen />
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      </Provider>
+    </NavigationContainer>
   );
 };
-
-// const styles = StyleSheet.create({
-//   sectionContainer: {
-//     marginTop: 32,
-//     paddingHorizontal: 24,
-//   },
-//   sectionTitle: {
-//     fontSize: 24,
-//     fontWeight: '600',
-//   },
-//   sectionDescription: {
-//     marginTop: 8,
-//     fontSize: 18,
-//     fontWeight: '400',
-//   },
-//   highlight: {
-//     fontWeight: '700',
-//   },
-// });
 
 export default App;

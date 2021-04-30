@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, TextInput, SafeAreaView } from 'react-native';
+import {StyleSheet, TextInput, SafeAreaView} from 'react-native';
 
 // Stylesheet
 const styles = StyleSheet.create({
@@ -24,22 +24,21 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 24.3,
   },
-})
+});
 
 // PhraseTextarea component
-export default function PhraseTextarea({ value,   onChange = () => null, editable }) {
-
+export const PhraseTextarea = ({value, onChange = () => null, editable}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <TextInput 
+      <TextInput
         placeholder="Enter here"
         style={editable ? styles.input : styles.textarea}
         value={value}
         onChangeText={onChange}
         editable={editable}
-        multiline = {true}
-        numberOfLines = {4}
+        multiline={true}
+        numberOfLines={4}
       />
     </SafeAreaView>
-  ); 
-}
+  );
+};

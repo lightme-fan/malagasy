@@ -2,14 +2,12 @@ import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
-import LanguageSwitcher from '../components/LanguageSwitcher/LanguageSwitcher';
-import SectionHeading from '../components/SectionHeading/SectionHeading';
-import ToolButton from '../components/ToolButton/ToolButton';
-import AddToolButton from '../Svg/AddToolButton';
-import LearntButton from '../Svg/LearntButton';
-import NightModeButton from '../Svg/NightModeButton';
-import SeenButton from '../Svg/SeenButton';
-import List from '../components/List/List';
+import {LanguageSwitcher} from '../components/LanguageSwitcher/LanguageSwitcher';
+import {SectionHeading} from '../components/SectionHeading/SectionHeading';
+import {ToolButton} from '../components/ToolButton/ToolButton';
+import {List} from '../components/List/List';
+
+import {AddToolButton, SeenButton, LearntButton, NightModeButton} from '../Svg';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,7 +31,7 @@ function Section({children}) {
   return <View style={styles.section}>{children}</View>;
 }
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
   // get state from initialState in reducer
   const categories = useSelector(state => state.items.categories);
   const seenPhrases = useSelector(state => state.items.seenPhrases);
@@ -68,17 +66,17 @@ function HomeScreen() {
                 categoryName={'All'}
                 actionText={'Learn'}
                 actionStyle={'#06B6D4'}
-                onPressButton={() => alert('Clicked button')}
+                onPressButton={() => alert('CLicked')}
               />
 
               {/* Displaying all categories */}
               {categories.map(item => (
                 <List
                   categoryName={item.name.en}
-                  categoryId={item.id}
+                  key={`${item.id}${item.name.en}`}
                   actionText={'Learn'}
                   actionStyle={'#06B6D4'}
-                  onPressButton={() => alert('Clicked button')}
+                  onPressButton={() => navigation.navigate('LearningScreen')}
                 />
               ))}
             </View>

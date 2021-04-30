@@ -2,7 +2,7 @@ import React from 'react';
 import {storiesOf} from '@storybook/react-native';
 import {SafeAreaView, View} from 'react-native';
 
-import ActionButton from './ActionButton';
+import {ActionButton} from './ActionButton';
 
 storiesOf('Action button', module)
   .add('Learn', () => (

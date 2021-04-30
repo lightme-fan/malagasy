@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {storiesOf} from '@storybook/react-native';
 
-import List from './List';
+import {List} from './List';
 import DATA from '../../data/categories.json';
 
 storiesOf('List', module).add('List categories', () => (

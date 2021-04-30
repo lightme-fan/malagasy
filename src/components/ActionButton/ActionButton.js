@@ -8,9 +8,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
-import CorrectAnswer from '../../Svg/Checked';
-import RightArrow from '../../Svg/RightArrow';
-import WrongAnswer from '../../Svg/Wrong';
+import {CorrectAnswer, RightArrow, WrongAnswer} from '../../Svg';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,7 +29,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ActionButton = ({textStyle, text, onPress}) => {
+export const ActionButton = ({textStyle, text, onPress}) => {
   let icon;
 
   if (text === 'Learn' || text === 'Pick') {
@@ -53,5 +51,3 @@ const ActionButton = ({textStyle, text, onPress}) => {
     </TouchableWithoutFeedback>
   );
 };
-
-export default ActionButton;
