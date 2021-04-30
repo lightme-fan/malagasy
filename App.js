@@ -6,13 +6,9 @@
  * @flow strict-local
  */
 
-// import 'react-native-gesture-handler';
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
-
 import {
   SafeAreaView,
   ScrollView,
@@ -20,9 +16,12 @@ import {
   Text,
   useColorScheme,
   View,
+  StyleSheet,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import appReducer from './src/redux/reducer';
 import HomeScreen from './src/screens/HomeScreen';
@@ -30,6 +29,15 @@ import LearningScreen from './src/screens/LearningScreen';
 
 // Create store
 const store = createStore(appReducer);
+
+const styles = StyleSheet.create({
+  container: {
+    width: 290,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 56,
+  },
+});
 
 const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -59,7 +67,6 @@ const Section = ({children, title}) => {
 
 // Create stack
 const Stack = createStackNavigator();
-console.log(Stack);
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -69,28 +76,33 @@ const App = () => {
   };
 
   return (
-    <NavigationContainer>
-      <Provider store={store}>
-        <SafeAreaView style={backgroundStyle}>
-          <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={backgroundStyle}>
-            {/* <Header /> */}
-            <View
-              style={{
-                backgroundColor: isDarkMode ? Colors.black : Colors.white,
-              }}>
-              {/* <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={HomeScreen} />
-              </Stack.Navigator> */}
-              <LearningScreen />
-            </View>
-          </ScrollView>
-        </SafeAreaView>
-      </Provider>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="LearningScreen" component={LearningScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
+
+{
+  /* <SafeAreaView style={backgroundStyle}>
+  <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+  <ScrollView
+    contentInsetAdjustmentBehavior="automatic"
+    style={backgroundStyle}>
+    <Header /> 
+    <View
+      style={{
+        backgroundColor: isDarkMode ? Colors.black : Colors.white,
+      }}>
+      <HomeScreen />
+    <LearningScreen />
+    </View>
+  </ScrollView>
+</SafeAreaView>; */
+}
 
 export default App;

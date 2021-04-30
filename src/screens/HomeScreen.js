@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
@@ -61,24 +61,28 @@ function HomeScreen({navigation}) {
           <Section>
             <SectionHeading title={'Select a category:'} />
             <View>
-              {/* Category All is not in category data, so I display this for that */}
-              <List
-                categoryName={'All'}
-                actionText={'Learn'}
-                actionStyle={'#06B6D4'}
-                onPressButton={() => alert('CLicked')}
-              />
-
               {/* Displaying all categories */}
-              {categories.map(item => (
-                <List
-                  categoryName={item.name.en}
-                  key={`${item.id}${item.name.en}`}
-                  actionText={'Learn'}
-                  actionStyle={'#06B6D4'}
-                  onPressButton={() => navigation.navigate('LearningScreen')}
-                />
-              ))}
+              {categories.map(item => {
+                const phraseId =
+                  item.phrasesIds[
+                    Math.floor(Math.random() * item.phrasesIds.length)
+                  ];
+
+                return (
+                  <List
+                    categoryName={item.name.en}
+                    key={`${item.id}${item.name.en}`}
+                    actionText={'Learn'}
+                    actionStyle={'#06B6D4'}
+                    onPressButton={() =>
+                      navigation.navigate('LearningScreen', {
+                        phraseId: phraseId,
+                        id: item.id,
+                      })
+                    }
+                  />
+                );
+              })}
             </View>
           </Section>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {SafeAreaView, Text, ScrollView, View, StyleSheet} from 'react-native';
 
 import {LanguageSwitcher} from '../components/LanguageSwitcher/LanguageSwitcher';
@@ -7,6 +7,7 @@ import {ToolButton} from '../components/ToolButton/ToolButton';
 import {PhraseTextarea} from '../components/PhraseTextarea/PhraseTextarea';
 import {NightModeButton, BackButton} from '../Svg/index';
 import {List} from '../components/List/List';
+import {useSelector} from 'react-redux';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,25 +30,47 @@ function Section({children}) {
   return <View style={styles.section}>{children}</View>;
 }
 
-function LearningScreen(params) {
+function LearningScreen({route, navigation}) {
+  const {id} = route.params;
+
+  const categories = useSelector(({items}) => items.categories);
+  const phrases = useSelector(({items}) => items.phrases);
+
+  //   Find a category
+  const category = categories.find(cat => cat.id === id);
+  //   Randomizing the category phrasesIds
+  const randomCategoryIds =
+    category.phrasesIds[Math.floor(Math.random() * category.phrasesIds.length)];
+  // Find a phrase by comparing the id with the randomId
+  const phrase = phrases.find(phrase => phrase.id.includes(randomCategoryIds));
+
+  //  answers options
+  const option1 = phrases[Math.floor(Math.random() * phrases.length)];
+  const option2 = phrases[Math.floor(Math.random() * phrases.length)];
+  const option3 = phrases[Math.floor(Math.random() * phrases.length)];
+  // answers
+  const anwsers = [phrase.name.en, option1, option2, option3];
+  console.log(anwsers);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.headerMenu}>
-          <ToolButton onPress={() => alert('Clicked button')}>
+          <ToolButton onPress={() => navigation.navigate('Home')}>
             <BackButton />
           </ToolButton>
-          <ToolButton onPress={() => alert('Clicked button')}>
+          console.log(phrase.name.mg);
+          <ToolButton onPress={() => alert('Clicked')}>
             <NightModeButton />
           </ToolButton>
           <LanguageSwitcher style={styles.item} />
         </View>
 
-        <SectionHeading title={`Category: `} />
+        <SectionHeading title={`Category:  ${category.name.en}`} />
 
         <Section>
           <SectionHeading title={'The phrase:'} />
-          <PhraseTextarea value={"Roa ambin'ny folo"} editable={false} />
+          <PhraseTextarea value={phrase.name.mg} editable={false} />
         </Section>
 
         <Section>
