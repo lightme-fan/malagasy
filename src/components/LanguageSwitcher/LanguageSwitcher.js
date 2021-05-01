@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView, View, Text, Pressable} from 'react-native';
-import Swicther from '../../Svg/Switcher';
+import {Swicther} from '../../Svg';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const LanguageSwitcher = () => {
+export const LanguageSwitcher = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Pressable onPress={() => alert('Languages is siwtched into English')}>
@@ -32,5 +32,3 @@ const LanguageSwitcher = () => {
     </SafeAreaView>
   );
 };
-
-export default LanguageSwitcher;

@@ -10,8 +10,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const SectionHeading = ({title}) => {
+export const SectionHeading = ({title}) => {
   return <Text style={styles.titleStyle}>{title}</Text>;
 };
-
-export default SectionHeading;

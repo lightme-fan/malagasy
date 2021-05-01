@@ -1,8 +1,8 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react-native';
 
-import ActionButton from '../ActionButton/ActionButton';
-import ListItem from './ListItem';
+import {ActionButton} from '../ActionButton/ActionButton';
+import {ListItem} from './ListItem';
 import {View} from 'react-native';
 
 function Item({categoryName, actionText, style, onPressButton}) {

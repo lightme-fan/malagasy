@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ListItem = ({category, children}) => {
+export const ListItem = ({category, children}) => {
   return (
     <SafeAreaView style={styles.item}>
       <Text>{category}</Text>
@@ -21,5 +21,3 @@ const ListItem = ({category, children}) => {
     </SafeAreaView>
   );
 };
-
-export default ListItem;
