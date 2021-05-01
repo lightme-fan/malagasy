@@ -2,8 +2,8 @@ import {combineReducers} from 'redux';
 import categoryData from '../data/categories.json';
 import phrasesData from '../data/phrases.json';
 
-const displayingQuestion = {
-  type: 'QUESTION',
+export const validateAnswers = text => {
+  return {type: 'VALIDATE_ANSWERS', payload: text};
 };
 
 const initialState = {
@@ -12,12 +12,18 @@ const initialState = {
   phrases: phrasesData.phrases,
   phraseQuestions: '',
   answers: [],
+  isCorrect: false,
+  isButtonOnPress: false,
+  correctAnswer: '',
   seenPhrases: [],
   learntPhrases: [],
 };
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'VALIDATE_ANSWERS': {
+      return state;
+    }
     default:
       return state;
   }

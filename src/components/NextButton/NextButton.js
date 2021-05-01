@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const NextButton = ({disabled}) => {
+export const NextButton = ({disabled, onPressButton, buttonText}) => {
   return (
     <Pressable
       disabled={disabled}
@@ -51,13 +51,13 @@ export const NextButton = ({disabled}) => {
         (styles.buttonStyle,
         disabled ? styles.disabledButton : styles.clickaleButtonStyle)
       }
-      onPress={() => alert('Added items')}>
+      onPress={onPressButton}>
       <Text
         style={
           (styles.text,
           disabled ? styles.disabledColor : styles.undisabledColor)
         }>
-        Add
+        {buttonText}
       </Text>
     </Pressable>
   );
