@@ -48,9 +48,13 @@ function LearningScreen({route, navigation}) {
   const option1 = phrases[Math.floor(Math.random() * phrases.length)];
   const option2 = phrases[Math.floor(Math.random() * phrases.length)];
   const option3 = phrases[Math.floor(Math.random() * phrases.length)];
+
   // answers
-  const anwsers = [phrase.name.en, option1, option2, option3];
-  console.log(anwsers);
+  const answers = [phrase, option1, option2, option3];
+  // Sorting the answers
+  const sortedAnswers = answers.sort(() => {
+    return 0.5 - Math.random();
+  });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -59,7 +63,6 @@ function LearningScreen({route, navigation}) {
           <ToolButton onPress={() => navigation.navigate('Home')}>
             <BackButton />
           </ToolButton>
-          console.log(phrase.name.mg);
           <ToolButton onPress={() => alert('Clicked')}>
             <NightModeButton />
           </ToolButton>
@@ -75,12 +78,15 @@ function LearningScreen({route, navigation}) {
 
         <Section>
           <SectionHeading title={'Pick a solution:'} />
-          <List
-            categoryName={'Twelve'}
-            actionText={'Pick'}
-            actionStyle={'#06B6D4'}
-            onPressButton={() => alert('Clicked button')}
-          />
+          {sortedAnswers.map(phrase => (
+            <List
+              categoryName={phrase.name.en}
+              actionText={'Pick'}
+              key={phrase.id}
+              actionStyle={'#06B6D4'}
+              onPressButton={() => alert('Clicked button')}
+            />
+          ))}
         </Section>
       </ScrollView>
     </SafeAreaView>

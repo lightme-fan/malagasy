@@ -2,10 +2,16 @@ import {combineReducers} from 'redux';
 import categoryData from '../data/categories.json';
 import phrasesData from '../data/phrases.json';
 
+const displayingQuestion = {
+  type: 'QUESTION',
+};
+
 const initialState = {
   loading: false,
   categories: categoryData.categories,
   phrases: phrasesData.phrases,
+  phraseQuestions: '',
+  answers: [],
   seenPhrases: [],
   learntPhrases: [],
 };
