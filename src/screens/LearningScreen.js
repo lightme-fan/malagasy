@@ -14,6 +14,7 @@ import {ToolButton} from '../components/ToolButton/ToolButton';
 import {PhraseTextarea} from '../components/PhraseTextarea/PhraseTextarea';
 import {NightModeButton, BackButton} from '../Svg/index';
 import {List} from '../components/List/List';
+import {ListItem} from '../components/ListItem/ListItem';
 import {NextButton} from '../components/NextButton/NextButton';
 import {useDispatch, useSelector} from 'react-redux';
 import {validateAnswers} from '../redux/reducer';
@@ -47,13 +48,14 @@ function Section({children}) {
 
 function LearningScreen({route, navigation}) {
   const {id} = route.params;
-  const [actionText, setActionText] = React.useState('Pick');
-  const [actionStyle, setActionStyle] = React.useState('#06B6D4');
-  const [isButtonOprees, setIsButtonOprees] = React.useState(false);
+  const [typeOfButton, setTypeOfButton] = React.useState('Pick');
+  const [styleButton, setStyleButton] = React.useState('#06B6D4');
 
   const categories = useSelector(({items}) => items.categories);
   const phrases = useSelector(({items}) => items.phrases);
-  const correctAnswer = useSelector(({items}) => items.correctAnswer);
+  const actionText = useSelector(({items}) => items.actionText);
+  const actionStyle = useSelector(({items}) => items.actionStyle);
+  const dispatch = useDispatch();
 
   //   Find a category
   const category = categories.find(cat => cat.id === id);
@@ -75,35 +77,16 @@ function LearningScreen({route, navigation}) {
     return 0.5 - Math.random();
   });
 
-  //   changedTouches: Array [ {…} ]
-  // ​
-  // identifier: 0
-  // ​
-  // locationX: 115.984375
-  // ​
-  // locationY: 17.96844482421875
-  // ​
-  // pageX: 138.984375
-  // ​
-  // pageY: 435.96844482421875
-  // ​
-  // target: 6819
-  // ​
-  // timestamp: 27594964
-  // ​
-  // touches: Array []
-
   // Find the correct answer
-  const findCorrectAnswer = (phraseId, event) => {
-    setIsButtonOprees(true);
-    const answer = sortedAnswers.find(item => item.id.includes(answers[0].id));
-
-    if (answer.id === phraseId) {
-      setActionText('Correct');
-      setActionStyle('#06D440');
+  const findCorrectAnswer = (correctPhrase, event) => {
+    const answer = sortedAnswers.find(item => item.id === phrase.id);
+    console.log(answer);
+    if (answer === correctPhrase) {
+      setTypeOfButton('Correct');
+      setStyleButton('#06D440');
     } else {
-      setActionText('Wrong');
-      setActionStyle('#D4068E');
+      setTypeOfButton('Wrong');
+      setStyleButton('#D4068E');
     }
   };
 
@@ -126,22 +109,23 @@ function LearningScreen({route, navigation}) {
         </Section>
         <Section>
           <SectionHeading title={'Pick a solution:'} />
-          {sortedAnswers.map(phr => {
-            console.log(phr);
-            return (
-              <List
-                categoryName={phr.name.en}
-                actionText={actionText}
-                key={phr.id}
-                value={phr.id}
-                actionStyle={actionStyle}
-                onPressButton={event => findCorrectAnswer(phr.id, event)}
-              />
-            );
-          })}
+          <List>
+            {sortedAnswers.map(phr => {
+              return (
+                <ListItem
+                  categoryName={phr.name.en}
+                  actionText={typeOfButton}
+                  actionStyle={styleButton}
+                  key={phr.id}
+                  id={phr.id}
+                  onPressButton={() => findCorrectAnswer(phr)}
+                />
+              );
+            })}
+          </List>
         </Section>
 
-        <View style={styles.nextButton}>
+        {/* <View style={styles.nextButton}>
           {isButtonOprees ? (
             <NextButton
               buttonText={'Next'}
@@ -151,7 +135,7 @@ function LearningScreen({route, navigation}) {
           ) : (
             <NextButton buttonText={'Next'} disabled={true} />
           )}
-        </View>
+        </View> */}
       </ScrollView>
     </SafeAreaView>
   );

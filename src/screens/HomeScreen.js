@@ -6,6 +6,7 @@ import {LanguageSwitcher} from '../components/LanguageSwitcher/LanguageSwitcher'
 import {SectionHeading} from '../components/SectionHeading/SectionHeading';
 import {ToolButton} from '../components/ToolButton/ToolButton';
 import {List} from '../components/List/List';
+import {ListItem} from '../components/ListItem/ListItem';
 
 import {AddToolButton, SeenButton, LearntButton, NightModeButton} from '../Svg';
 
@@ -34,6 +35,7 @@ function Section({children}) {
 function HomeScreen({navigation}) {
   // get state from initialState in reducer
   const categories = useSelector(state => state.items.categories);
+  console.log(categories);
   const seenPhrases = useSelector(state => state.items.seenPhrases);
   const learntPhrases = useSelector(state => state.items.learntPhrases);
 
@@ -62,27 +64,32 @@ function HomeScreen({navigation}) {
             <SectionHeading title={'Select a category:'} />
             <View>
               {/* Displaying all categories */}
-              {categories.map(item => {
-                const phraseId =
-                  item.phrasesIds[
-                    Math.floor(Math.random() * item.phrasesIds.length)
-                  ];
+              <List>
+                {categories.map(item => {
+                  const category = item.name.en;
+                  console.log(category);
+                  const phraseId =
+                    item.phrasesIds[
+                      Math.floor(Math.random() * item.phrasesIds.length)
+                    ];
 
-                return (
-                  <List
-                    categoryName={item.name.en}
-                    key={`${item.id}${item.name.en}`}
-                    actionText={'Learn'}
-                    actionStyle={'#06B6D4'}
-                    onPressButton={() =>
-                      navigation.navigate('LearningScreen', {
-                        phraseId: phraseId,
-                        id: item.id,
-                      })
-                    }
-                  />
-                );
-              })}
+                  return (
+                    <ListItem
+                      categoryName={category}
+                      key={`${item.id}${category}`}
+                      categoryId={item.id}
+                      actionText={'Learn'}
+                      actionStyle={'#06B6D4'}
+                      onPressButton={() =>
+                        navigation.navigate('LearningScreen', {
+                          phraseId: phraseId,
+                          id: item.id,
+                        })
+                      }
+                    />
+                  );
+                })}
+              </List>
             </View>
           </Section>
 
