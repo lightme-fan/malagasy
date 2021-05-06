@@ -9,7 +9,7 @@ import {
 import {ActionButton} from '../ActionButton/ActionButton';
 
 const styles = StyleSheet.create({
-  item: {
+  listItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 20,
@@ -20,17 +20,13 @@ const styles = StyleSheet.create({
 });
 
 export const ListItem = ({
-  categoryName,
   actionText,
   actionStyle,
-  categoryId,
+  categoryName,
   onPressButton,
 }) => {
   return (
-    <TouchableOpacity
-      style={styles.item}
-      onPress={onPressButton}
-      id={categoryId}>
+    <TouchableOpacity style={styles.listItem} onPress={onPressButton}>
       <Text>{categoryName}</Text>
       <View>
         <ActionButton

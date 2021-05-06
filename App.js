@@ -26,6 +26,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import appReducer from './src/redux/reducer';
 import HomeScreen from './src/screens/HomeScreen';
 import LearningScreen from './src/screens/LearningScreen';
+import LearningValidation from './src/screens/LearningValidation';
 
 // Create store
 const store = createStore(appReducer);
@@ -81,6 +82,10 @@ const App = () => {
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="LearningScreen" component={LearningScreen} />
+          <Stack.Screen
+            name="LearningValidation"
+            component={LearningValidation}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

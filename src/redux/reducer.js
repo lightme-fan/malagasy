@@ -2,28 +2,51 @@ import {combineReducers} from 'redux';
 import categoryData from '../data/categories.json';
 import phrasesData from '../data/phrases.json';
 
-export const validateAnswers = (text, style) => {
-  return {type: 'VALIDATE_ANSWERS', text: text, style: style};
+export const setAnswers = phrases => {
+  return {type: 'SET_ANSWERS', payload: phrases};
+};
+
+export const validateAnswers = phrase => {
+  return {type: 'VALIDATE_ANSWERS', payload: phrase};
+};
+
+export const pressedButton = () => {
+  return {
+    type: 'BUTTON_ONPRESS',
+  };
 };
 
 const initialState = {
   loading: false,
   categories: categoryData.categories,
   phrases: phrasesData.phrases,
-  correctAnswer: '',
+  correctPhrase: {},
   actionText: 'Pick',
   actionStyle: '#06B6D4',
+  answers: [],
+  pressed: true,
   seenPhrases: [],
   learntPhrases: [],
 };
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'SET_ANSWERS': {
+      return {
+        ...state,
+        answers: action.payload,
+      };
+    }
     case 'VALIDATE_ANSWERS': {
       return {
         ...state,
-        actionText: action.text,
-        actionStyle: action.style,
+        correctPhrase: action.payload,
+      };
+    }
+    case 'BUTTON_ONPRESS': {
+      return {
+        ...state,
+        pressed: false,
       };
     }
     default:

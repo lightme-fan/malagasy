@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ActionButton = ({textStyle, text, onPress}) => {
+export const ActionButton = ({textStyle, text, textRef, iconRef, onPress}) => {
   let icon;
 
   if (text === 'Learn' || text === 'Pick') {
@@ -45,8 +45,12 @@ export const ActionButton = ({textStyle, text, onPress}) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.container}>
-        <Text style={(styles.text, {color: textStyle})}>{text}</Text>
-        <View style={styles.iconStyle}>{icon}</View>
+        <Text ref={textRef} style={(styles.text, {color: textStyle})}>
+          {text}
+        </Text>
+        <View ref={iconRef} style={styles.iconStyle}>
+          {icon}
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );

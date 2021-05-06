@@ -35,7 +35,6 @@ function Section({children}) {
 function HomeScreen({navigation}) {
   // get state from initialState in reducer
   const categories = useSelector(state => state.items.categories);
-  console.log(categories);
   const seenPhrases = useSelector(state => state.items.seenPhrases);
   const learntPhrases = useSelector(state => state.items.learntPhrases);
 
@@ -67,7 +66,6 @@ function HomeScreen({navigation}) {
               <List>
                 {categories.map(item => {
                   const category = item.name.en;
-                  console.log(category);
                   const phraseId =
                     item.phrasesIds[
                       Math.floor(Math.random() * item.phrasesIds.length)
