@@ -29,28 +29,35 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ActionButton = ({textStyle, text, textRef, iconRef, onPress}) => {
+export const ActionButton = ({
+  textStyle,
+  text,
+  onPress,
+  correctPhrase,
+  inCorrectPhrase,
+}) => {
   let icon;
+  let buttonText;
 
-  if (text === 'Learn' || text === 'Pick') {
+  if (
+    (!correctPhrase && !inCorrectPhrase && text === 'Learn') ||
+    text === 'Pick'
+  ) {
+    buttonText = text;
     icon = <RightArrow />;
-  }
-  if (text === 'Correct') {
+  } else if (correctPhrase || text === 'Correct') {
+    buttonText = 'Correct';
     icon = <CorrectAnswer />;
-  }
-  if (text === 'Wrong') {
+  } else if (inCorrectPhrase || text === 'Wrong') {
+    buttonText = 'Wrong';
     icon = <WrongAnswer />;
   }
 
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.container}>
-        <Text ref={textRef} style={(styles.text, {color: textStyle})}>
-          {text}
-        </Text>
-        <View ref={iconRef} style={styles.iconStyle}>
-          {icon}
-        </View>
+        <Text style={(styles.text, {color: textStyle})}>{buttonText}</Text>
+        <View style={styles.iconStyle}>{icon}</View>
       </View>
     </TouchableWithoutFeedback>
   );

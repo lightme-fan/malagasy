@@ -20,17 +20,21 @@ const styles = StyleSheet.create({
 });
 
 export const ListItem = ({
-  actionText,
+  buttonText,
   actionStyle,
   categoryName,
   onPressButton,
+  isCorrect,
+  isIncorrect,
 }) => {
   return (
     <TouchableOpacity style={styles.listItem} onPress={onPressButton}>
       <Text>{categoryName}</Text>
       <View>
         <ActionButton
-          text={actionText}
+          isCorrect={isCorrect}
+          isIncorrect={isIncorrect}
+          text={buttonText}
           textStyle={actionStyle}
           style={{alignSelf: 'flex-end'}}
         />

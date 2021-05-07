@@ -8,7 +8,7 @@
 
 import * as React from 'react';
 import {createStore} from 'redux';
-import {Provider} from 'react-redux';
+
 import {
   SafeAreaView,
   ScrollView,
@@ -23,13 +23,9 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import appReducer from './src/redux/reducer';
+import {ContextProvider} from './src/redux/reducer';
 import HomeScreen from './src/screens/HomeScreen';
 import LearningScreen from './src/screens/LearningScreen';
-import LearningValidation from './src/screens/LearningValidation';
-
-// Create store
-const store = createStore(appReducer);
 
 const styles = StyleSheet.create({
   container: {
@@ -77,37 +73,15 @@ const App = () => {
   };
 
   return (
-    <Provider store={store}>
+    <ContextProvider>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="LearningScreen" component={LearningScreen} />
-          <Stack.Screen
-            name="LearningValidation"
-            component={LearningValidation}
-          />
         </Stack.Navigator>
       </NavigationContainer>
-    </Provider>
+    </ContextProvider>
   );
 };
-
-{
-  /* <SafeAreaView style={backgroundStyle}>
-  <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-  <ScrollView
-    contentInsetAdjustmentBehavior="automatic"
-    style={backgroundStyle}>
-    <Header /> 
-    <View
-      style={{
-        backgroundColor: isDarkMode ? Colors.black : Colors.white,
-      }}>
-      <HomeScreen />
-    <LearningScreen />
-    </View>
-  </ScrollView>
-</SafeAreaView>; */
-}
 
 export default App;

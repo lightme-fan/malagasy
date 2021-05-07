@@ -1,13 +1,10 @@
 # learn-gasy
 
-
 # install
 
     ```bash
     yarn install
     ```
-
-
 
 # run
 
@@ -23,7 +20,7 @@ in separate terminal
 yarn android
 ```
 
-or 
+or
 
 ```bash
 yarn ios
@@ -33,19 +30,19 @@ yarn ios
 
 Enter dev menu on phone crtl + m (for android) select toggle storybook
 
-
 # problems
 
-if you get 
+I couldn't manage the state with redux so I just used React.useState instead.
+I still couldn't get the validate answers worked.
 
 ```bash
 Error: spawn ./gradlew EACCES
- ```
+```
 
 while running `yarn android`
 
 try
 
 ```
-chmod 755 android/gradlew 
+chmod 755 android/gradlew
 ```

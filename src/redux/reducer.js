@@ -1,30 +1,23 @@
+import React, {useReducer} from 'react';
+import {createContext} from 'react';
 import {combineReducers} from 'redux';
 import categoryData from '../data/categories.json';
 import phrasesData from '../data/phrases.json';
 
-export const setAnswers = phrases => {
-  return {type: 'SET_ANSWERS', payload: phrases};
-};
-
-export const validateAnswers = phrase => {
-  return {type: 'VALIDATE_ANSWERS', payload: phrase};
-};
-
-export const pressedButton = () => {
-  return {
-    type: 'BUTTON_ONPRESS',
-  };
-};
+const Context = createContext();
 
 const initialState = {
-  loading: false,
   categories: categoryData.categories,
   phrases: phrasesData.phrases,
-  correctPhrase: {},
-  actionText: 'Pick',
-  actionStyle: '#06B6D4',
-  answers: [],
-  pressed: true,
+  buttonText: 'Pick',
+  buttonColor: '#06B6D4',
+  category: '',
+  quiz: [],
+  correctAnswer: {},
+  wrongAnswers: [],
+  isPhraseCorrect: false,
+  isPhraseWrong: false,
+  pressed: false,
   seenPhrases: [],
   learntPhrases: [],
 };
@@ -37,16 +30,28 @@ const appReducer = (state = initialState, action) => {
         answers: action.payload,
       };
     }
-    case 'VALIDATE_ANSWERS': {
+    case 'CORRECT_PHRASE': {
       return {
         ...state,
-        correctPhrase: action.payload,
+        correctAnswer: action.payload,
+      };
+    }
+    case 'WRONG_PHRASES': {
+      return {
+        ...state,
+        wrongAnswer: action.payload,
       };
     }
     case 'BUTTON_ONPRESS': {
       return {
         ...state,
-        pressed: false,
+        pressed: true,
+      };
+    }
+    case 'HANDLE_NEXT_BUTTON': {
+      return {
+        ...state,
+        newQuiz: action.payload,
       };
     }
     default:
@@ -54,6 +59,18 @@ const appReducer = (state = initialState, action) => {
   }
 };
 
-export default combineReducers({
-  items: appReducer,
-});
+const ContextProvider = ({children}) => {
+  const [state, dispatch] = useReducer(appReducer, initialState);
+
+  return (
+    <Context.Provider
+      value={{
+        state,
+        dispatch,
+      }}>
+      {children}
+    </Context.Provider>
+  );
+};
+
+export {ContextProvider, Context};

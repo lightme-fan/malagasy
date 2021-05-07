@@ -9,6 +9,7 @@ import {List} from '../components/List/List';
 import {ListItem} from '../components/ListItem/ListItem';
 
 import {AddToolButton, SeenButton, LearntButton, NightModeButton} from '../Svg';
+import {Context} from '../redux/reducer';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,9 +35,8 @@ function Section({children}) {
 
 function HomeScreen({navigation}) {
   // get state from initialState in reducer
-  const categories = useSelector(state => state.items.categories);
-  const seenPhrases = useSelector(state => state.items.seenPhrases);
-  const learntPhrases = useSelector(state => state.items.learntPhrases);
+  const {state} = React.useContext(Context);
+  const {categories, seenPhrases, learntPhrases} = state;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -76,7 +76,7 @@ function HomeScreen({navigation}) {
                       categoryName={category}
                       key={`${item.id}${category}`}
                       categoryId={item.id}
-                      actionText={'Learn'}
+                      buttonText={'Learn'}
                       actionStyle={'#06B6D4'}
                       onPressButton={() =>
                         navigation.navigate('LearningScreen', {
