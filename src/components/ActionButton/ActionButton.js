@@ -1,8 +1,6 @@
 import React from 'react';
 import {
-  Image,
   View,
-  SafeAreaView,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -19,6 +17,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   text: {
+    //Font size seems to small
     fontSize: 40,
     fontWeight: '600',
     textAlign: 'right',
@@ -38,7 +37,7 @@ export const ActionButton = ({
 }) => {
   let icon;
   let buttonText;
-
+  // It would be better to just pass the text directly and handle the assignment in the parent scope
   if (
     (!correctPhrase && !inCorrectPhrase && text === 'Learn') ||
     text === 'Pick'

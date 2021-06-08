@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontWeight: '600',
   },
-  clickaleButtonStyle: {
+  clickaleButtonStyle: { //clickable
     backgroundColor: 'rgba(6, 182, 212, 1)',
     alignItems: 'center',
     justifyContent: 'center',
@@ -35,14 +35,14 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginTop: 10,
   },
-  undisabledColor: {
+  undisabledColor: { // enabled
     color: '#FFFFFF',
   },
   disabledColor: {
     color: 'rgba(6, 182, 212, 1)',
   },
 });
-
+// I can't see the text of the button, please tell me if the issue is on my end
 export const NextButton = ({disabled, onPressButton, buttonText}) => {
   return (
     <Pressable
