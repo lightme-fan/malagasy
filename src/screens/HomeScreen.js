@@ -98,7 +98,7 @@ function HomeScreen({navigation}) {
 
           {/* Learnt phrases */}
           <Section>
-            {!learntPhrases && <SectionHeading title={'Learnt phrases:'} />}
+            {!learntPhrases && <SectionHeading title={'Learnt phrases:'} /> /*Why would this only be shown when learnt phrases does not exist? */ } 
           </Section>
         </View>
       </ScrollView>
