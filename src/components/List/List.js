@@ -2,10 +2,6 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  Pressable,
-  TouchableOpacity,
-  View,
 } from 'react-native';
 
 import {ActionButton} from '../ActionButton/ActionButton';
@@ -21,7 +17,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
 });
-
+// This is quite useless at the moment
 export const List = ({children}) => {
   return <SafeAreaView style={styles.listItem}>{children}</SafeAreaView>;
 };

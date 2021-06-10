@@ -17,16 +17,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export const LanguageSwitcher = () => {
+export const LanguageSwitcher = () => { //primary and secondary language should be props, as well as onPress
   return (
     <SafeAreaView style={styles.container}>
-      <Pressable onPress={() => alert('Languages is siwtched into English')}>
+      <Pressable onPress={() => alert('Languages is switched into English')}>
         <Text style={styles.color}>EN</Text>
       </Pressable>
       <View>
         <Swicther />
       </View>
-      <Pressable onPress={() => alert('Languages is siwtched into Malagasy')}>
+      <Pressable onPress={() => alert('Languages is switched into Malagasy')}>
         <Text style={styles.color}>MA</Text>
       </Pressable>
     </SafeAreaView>

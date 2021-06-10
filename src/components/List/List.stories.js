@@ -8,7 +8,7 @@ import {ListItem} from '../ListItem/ListItem';
 
 storiesOf('List', module).add('List categories', () => (
   <List>
-    {DATA.categories.map(item => {
+    {DATA.categories.map(item => { // The list component should do the mapping
       console.log(item.id);
       return (
         <ListItem
