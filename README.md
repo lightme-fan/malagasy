@@ -30,11 +30,6 @@ yarn ios
 
 Enter dev menu on phone crtl + m (for android) select toggle storybook
 
-# problems
-
-I couldn't manage the state with redux so I just used React.useState instead.
-I still couldn't get the validate answers worked.
-
 ```bash
 Error: spawn ./gradlew EACCES
 ```
